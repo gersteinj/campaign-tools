@@ -12,4 +12,8 @@ def index(request):
     return HttpResponse(template.render(context, request))
 
 def view_roster(request, roster_id):
-    return HttpResponse(f"You're viewing roster {roster_id}.")
+    roster = Roster.objects.get(pk=roster_id)
+    template = loader.get_template('rostertools/view-roster.html')
+    context={'roster': roster}
+    return HttpResponse(template.render(context, request))
+    
