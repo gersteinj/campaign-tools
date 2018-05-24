@@ -4,7 +4,8 @@
 {% if all_rosters %}
     <ul>
         {% for roster in all_rosters %}
-            <li><a href="/rosters/view/{{ roster.id }}/"> {{ roster.title }}</a></li>
+            <!-- <li><a href="/rosters/view/{{ roster.id }}/"> {{ roster.title }}</a></li> -->
+            <li><a href="{% url 'rostertools:view roster' roster.id %}"> {{ roster.title }}</a></li>
         {% endfor %}
     </ul>
 {% else %}
