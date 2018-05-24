@@ -1,1 +1,7 @@
 <h1>{{ roster.title }} ({{ roster.owner }})</h1>
+
+<ul>
+    {% for unit in roster.unit_set.all %}
+    <p>{{ unit }}   </p>
+    {% endfor %}
+</ul>
