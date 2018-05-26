@@ -1,3 +1,6 @@
+{% extends "rostertools/base.html" %}
+
+{% block content %}
 <h1>{{ roster.title }} ({{ roster.owner }})</h1>
 
 <ul>
@@ -5,3 +8,4 @@
     <p>{{ unit }}   </p>
     {% endfor %}
 </ul>
+{% endblock content %}

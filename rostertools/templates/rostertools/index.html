@@ -1,5 +1,7 @@
-<h1>Roster Manager</h1>
+{% extends "rostertools/base.html" %}
 
+{% block content %}
+<h1>Roster Manager</h1>
 <h2>View all rosters</h2>
 {% if all_rosters %}
     <ul>
@@ -12,3 +14,4 @@
     <p>No rosters. :(</p>
 {% endif %}
 <h2>Mostly recently edited rosters</h2>
+{% endblock content %}
