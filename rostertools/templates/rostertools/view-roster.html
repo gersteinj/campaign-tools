@@ -1,7 +1,14 @@
 {% extends "rostertools/base.html" %}
 
 {% block content %}
+
 <h1>{{ roster.title }} ({{ roster.owner }})</h1>
+
+{% if user == roster.owner %}
+<p>This is yours!</p>
+{% else %}
+<p>This is not yours. If you think it is, maybe you should log in</p>
+{% endif %}
 
 <ul>
     {% for unit in roster.unit_set.all %}
