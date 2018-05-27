@@ -57,7 +57,7 @@ ROOT_URLCONF = 'campaigntools.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates',],
+        'DIRS': [config('ACCOUNT_TEMPLATES_DIR')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
