@@ -57,7 +57,7 @@ ROOT_URLCONF = 'campaigntools.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['./templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,3 +122,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+# Where to go after logging in
+LOGIN_REDIRECT_URL = '/'
+
+# allows for password reset in console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
