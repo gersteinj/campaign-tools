@@ -24,8 +24,9 @@ def create_or_edit(request):
 
 @login_required
 def user_rosters(request, username):
-    user = get_object_or_404(User, username=username)
+    owner = get_object_or_404(User, username=username)
     # return HttpResponse(f'{username}\'s rosters will appear here')
     # return HttpResponse(user.email)
-    user_rosters = Roster.objects.filter(owner=user)
-    return HttpResponse(user_rosters)
+    user_rosters = Roster.objects.filter(owner=owner)
+    return render(request, 'rostertools/user-rosters.html', {'owner': owner, 'userrosters': user_rosters})
+    # return HttpResponse(user_rosters)

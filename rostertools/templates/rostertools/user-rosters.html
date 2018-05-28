@@ -1,0 +1,20 @@
+{% extends "rostertools/base.html" %}
+
+{% block content %}
+
+{% if user == owner %}
+<p>This is yours!</p>
+{% else %}
+<p>This is not yours. If you think it is, maybe you should log in</p>
+{% endif %}
+
+<hr>
+
+<h2>{{ owner }}'s rosters</h2>
+<ul>
+{% for roster in userrosters %}
+<li>{{ roster.title }}</li>
+{% endfor %}
+</ul>
+{% endblock content %}
+
