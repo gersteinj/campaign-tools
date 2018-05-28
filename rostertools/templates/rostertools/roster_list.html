@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
+
 <h1>Roster Manager</h1>
 <h2>View all rosters</h2>
-{% if all_rosters %}
+{% if roster_list %}
     <ul>
-        {% for roster in all_rosters %}
+        {% for roster in roster_list %}
             <!-- <li><a href="/rosters/view/{{ roster.id }}/"> {{ roster.title }}</a></li> -->
             <li><a href="{% url 'rostertools:view roster' roster.id %}"> {{ roster.title }}</a></li>
         {% endfor %}
@@ -14,4 +15,6 @@
     <p>No rosters. :(</p>
 {% endif %}
 <h2>Mostly recently edited rosters</h2>
+<p>I haven't actually implemented this yet. Someday. Maybe.</p>
+
 {% endblock content %}

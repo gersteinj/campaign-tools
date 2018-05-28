@@ -2,17 +2,14 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
 from .models import Roster, Unit
 from django.contrib.auth.models import User
 
 # Create your views here.
-def index(request):
-    all_rosters = Roster.objects.all()
-    # template = loader.get_template('rostertools/index.html')
-    context = {'all_rosters': all_rosters}
-    # return HttpResponse(template.render(context, request))
-    return render(request, 'rostertools/index.html', context)
+class RosterListView(generic.ListView):
+    model = Roster
 
 def view_roster(request, roster_id):
     roster = get_object_or_404(Roster, pk=roster_id)
