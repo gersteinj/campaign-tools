@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 
 from .models import Roster, Unit
+from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
@@ -16,5 +18,14 @@ def view_roster(request, roster_id):
     roster = get_object_or_404(Roster, pk=roster_id)
     return render(request, 'rostertools/view-roster.html', {'roster': roster})
 
-def create_roster(request):
-    pass
+@login_required
+def create_or_edit(request):
+    return HttpResponse('create or edit rosters here')
+
+@login_required
+def user_rosters(request, username):
+    user = get_object_or_404(User, username=username)
+    # return HttpResponse(f'{username}\'s rosters will appear here')
+    # return HttpResponse(user.email)
+    user_rosters = Roster.objects.filter(owner=user)
+    return HttpResponse(user_rosters)
