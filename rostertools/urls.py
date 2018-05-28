@@ -9,4 +9,5 @@ urlpatterns = [
     path('users/<str:username>/', views.UserRosterListView.as_view(), name='user'),
     path('rosters/add/', views.add_roster, name="add roster"),
     path('rosters/edit/<int:pk>/', views.edit_roster, name='edit roster'),
+    path('rosters/unit/add/', views.add_unit, name="add unit"),
 ]
