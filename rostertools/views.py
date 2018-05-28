@@ -6,7 +6,7 @@ from django.views import generic
 from django.contrib.auth.models import User
 
 from .models import Roster, Unit
-from .forms import CreateRosterForm
+from .forms import RosterForm
 
 # Create your views here.
 class RosterListView(generic.ListView):
@@ -32,15 +32,30 @@ class UserRosterListView(generic.ListView):
 
 def add_roster(request):
     if request.method == 'POST':
-        form = CreateRosterForm(request.POST)
+        form = RosterForm(request.POST)
         if form.is_valid():
             roster = form.save(commit=False)
             roster.owner = request.user
             roster.save()
             return redirect('rostertools:view roster', pk=roster.pk)
     else:
-        form = CreateRosterForm()
-    return render(request, 'rostertools/add_roster.html', {'form': form})
+        form = RosterForm()
+    return render(request, 'rostertools/edit_roster.html', {'form': form})
+
+def edit_roster(request, pk):
+    roster = get_object_or_404(Roster, pk=pk)
+    if request.method == 'POST':
+        form = RosterForm(request.POST, instance=roster)
+        if form.is_valid():
+            roster = form.save(commit=False)
+            roster.owner = request.user
+            roster.save()
+            return redirect('rostertools:view roster', pk=roster.pk)
+    else:
+        form = RosterForm(instance=roster)
+    return render(request, 'rostertools/edit_roster.html', {'form': form})
+
+
 
 # @login_required
 # def user_rosters(request, username):

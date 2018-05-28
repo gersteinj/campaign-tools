@@ -10,4 +10,9 @@
     <p>{{ unit }}   </p>
     {% endfor %}
 </ul>
+{% if user == roster.owner %}
+<a class="btn btn-primary" href="{% url 'rostertools:edit roster' pk=roster.pk %}">Edit roster</a>
+{% else %}
+<p>Only the owner is permitted to edit this list.</p>
+{% endif %}
 {% endblock content %}
