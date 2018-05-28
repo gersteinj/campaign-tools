@@ -3,14 +3,13 @@
 {% block content %}
 
 {% if user == owner %}
-<p>This is yours!</p>
+<h2>Your Rosters</h2>
 {% else %}
-<p>This is not yours. If you think it is, maybe you should log in</p>
+<h2>All Rosters for {{ owner }}</h2>
 {% endif %}
 
 <hr>
 
-<h2>{{ owner }}'s rosters</h2>
 <ul>
 {% for roster in userrosters %}
 <!-- <li>{{ roster.title }}</li> -->
