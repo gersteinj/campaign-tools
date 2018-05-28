@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
@@ -37,6 +37,7 @@ def add_roster(request):
             roster = form.save(commit=False)
             roster.owner = request.user
             roster.save()
+            return redirect('rostertools:view roster', pk=roster.pk)
     else:
         form = CreateRosterForm()
     return render(request, 'rostertools/add_roster.html', {'form': form})
