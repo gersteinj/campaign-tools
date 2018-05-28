@@ -13,7 +13,8 @@
 <h2>{{ owner }}'s rosters</h2>
 <ul>
 {% for roster in userrosters %}
-<li>{{ roster.title }}</li>
+<!-- <li>{{ roster.title }}</li> -->
+<li><a href="{% url 'rostertools:view roster' roster.id%}"> {{ roster.title }}</a></li>
 {% endfor %}
 </ul>
 {% endblock content %}
