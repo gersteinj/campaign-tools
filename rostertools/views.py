@@ -3,9 +3,10 @@ from django.http import HttpResponse, Http404
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django.contrib.auth.models import User
 
 from .models import Roster, Unit
-from django.contrib.auth.models import User
+from .forms import CreateRosterForm
 
 # Create your views here.
 class RosterListView(generic.ListView):
@@ -29,9 +30,16 @@ class UserRosterListView(generic.ListView):
         return render(request, 'rostertools/user_rosters.html', {'object_list': self.object_list, 'owner': User.objects.get(username=username)})
         # return HttpResponse(self.object_list)
 
-@login_required
-def create_or_edit(request):
-    return HttpResponse('create or edit rosters here')
+def add_roster(request):
+    if request.method == 'POST':
+        form = CreateRosterForm(request.POST)
+        if form.is_valid():
+            roster = form.save(commit=False)
+            roster.owner = request.user
+            roster.save()
+    else:
+        form = CreateRosterForm()
+    return render(request, 'rostertools/add_roster.html', {'form': form})
 
 # @login_required
 # def user_rosters(request, username):

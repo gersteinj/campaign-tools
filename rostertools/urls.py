@@ -3,11 +3,9 @@ from . import views
 
 app_name='rostertools'
 urlpatterns = [
-    # path('', views.index, name='index'),
     path('', views.RosterListView.as_view(), name='index'),
     path('roster/<int:pk>/', views.RosterDetailView.as_view(), name='view roster'),
     path('users/', views.UsersListView.as_view(), name='users'),
-    # path('user/<str:username>/', views.user_rosters, name='user'),
-    path('user/<str:username>/', views.UserRosterListView.as_view(), name='user'),
-    # path('roster/mine/', views.my_roster, name='my roster'),
+    path('users/<str:username>/', views.UserRosterListView.as_view(), name='user'),
+    path('rosters/add/', views.add_roster, name="add roster"),
 ]

@@ -28,6 +28,7 @@
                     <li><a href="{% url 'rostertools:users' %}">All users</a></li>
                     {% if user.is_authenticated %}
                         <li><a href="{% url 'rostertools:user' user.get_username %}">My rosters</a></li>
+                        <li><a href="{% url 'rostertools:add roster' %}">Create roster</a></li>
                         <li><a href="{% url 'logout' %}">Log out</a></li>
                     {% else %}
                         <li><a href="{% url 'login' %}">Log in</a></li>
