@@ -11,7 +11,7 @@
 <hr>
 
 <ul>
-{% for roster in userrosters %}
+{% for roster in object_list %}
 <!-- <li>{{ roster.title }}</li> -->
 <li><a href="{% url 'rostertools:view roster' roster.id%}"> {{ roster.title }}</a></li>
 {% endfor %}

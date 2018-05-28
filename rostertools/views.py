@@ -15,22 +15,33 @@ class RosterListView(generic.ListView):
 class RosterDetailView(generic.DetailView):
     model = Roster
 
-class UserListView(generic.ListView):
+class UsersListView(generic.ListView):
     model = User
 
-def view_roster(request, roster_id):
-    roster = get_object_or_404(Roster, pk=roster_id)
-    return render(request, 'rostertools/view-roster.html', {'roster': roster})
+class UserRosterListView(generic.ListView):
+    model = Roster
+
+    def get(self, request, username):
+        self.object_list = self.get_queryset()
+        self.object_list = self.object_list.filter(owner__username=username)
+    # queryset = Roster.objects.filter(owner__username='robotsinheels')
+    # template_name = 'rostertools/user_rosters.html'
+        return render(request, 'rostertools/user_rosters.html', {'object_list': self.object_list, 'owner': User.objects.get(username=username)})
+        # return HttpResponse(self.object_list)
 
 @login_required
 def create_or_edit(request):
     return HttpResponse('create or edit rosters here')
 
-@login_required
-def user_rosters(request, username):
-    owner = get_object_or_404(User, username=username)
-    # return HttpResponse(f'{username}\'s rosters will appear here')
-    # return HttpResponse(user.email)
-    user_rosters = Roster.objects.filter(owner=owner)
-    return render(request, 'rostertools/user-rosters.html', {'owner': owner, 'userrosters': user_rosters})
-    # return HttpResponse(user_rosters)
+# @login_required
+# def user_rosters(request, username):
+#     owner = get_object_or_404(User, username=username)
+#     # return HttpResponse(f'{username}\'s rosters will appear here')
+#     # return HttpResponse(user.email)
+#     user_rosters = Roster.objects.filter(owner=owner)
+#     return render(request, 'rostertools/user-rosters.html', {'owner': owner, 'userrosters': user_rosters})
+#     # return HttpResponse(user_rosters)
+
+# def view_roster(request, roster_id):
+#     roster = get_object_or_404(Roster, pk=roster_id)
+#     return render(request, 'rostertools/view-roster.html', {'roster': roster})
