@@ -29,9 +29,9 @@
                     {% else %}
                         <li><a href="{% url 'login' %}">Log in</a></li>
                     {% endif %}
-                    <li>My rosters</li>
                     
-                    <li>All players</li>
+                    <li><a href="{% url 'rostertools:users' %}">All users</a></li>
+                    <li>My rosters</li>
                 </ul>
                 {% endblock sidebar %}
             </div>

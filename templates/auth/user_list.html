@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>View all users</h1>
+{% if user_list %}
+    <ul>
+        {% for user in user_list %}
+        <li><a href="{% url 'rostertools:user' user.username %}">{{ user }}</a></li>
+        {% endfor %}
+    </ul>
+{% else %}
+{% endif %}
+{% endblock content %}

@@ -15,6 +15,9 @@ class RosterListView(generic.ListView):
 class RosterDetailView(generic.DetailView):
     model = Roster
 
+class UserListView(generic.ListView):
+    model = User
+
 def view_roster(request, roster_id):
     roster = get_object_or_404(Roster, pk=roster_id)
     return render(request, 'rostertools/view-roster.html', {'roster': roster})
