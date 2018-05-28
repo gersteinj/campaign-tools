@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 class RosterListView(generic.ListView):
     model = Roster
+    paginate_by = 10
 
 class RosterDetailView(generic.DetailView):
     model = Roster
