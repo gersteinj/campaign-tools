@@ -17,11 +17,19 @@
             <div class="col-sm-2">
                 {% block sidebar %}
                 <h3>Campaign tools</h3>
+                {% if user.is_authenticated %}
+                    <h5>Welcome {{user.get_username }}</h5>
+                {% endif %}
+                
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'rostertools:index' %}">Home</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'logout' %}">Log out</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">Log in</a></li>
+                    {% endif %}
                     <li>My rosters</li>
-                    <li>Login</li>
-                    <li>Logout</li>
+                    
                     <li>All players</li>
                 </ul>
                 {% endblock sidebar %}
