@@ -5,7 +5,8 @@ app_name='rostertools'
 urlpatterns = [
     # path('', views.index, name='index'),
     path('', views.RosterListView.as_view(), name='index'),
+    # path('roster/<int:roster_id>/', views.view_roster, name='view roster'),
+    path('roster/<int:pk>/', views.RosterDetailView.as_view(), name='view roster'),
     path('user/<str:username>/', views.user_rosters, name='user'),
-    path('roster/<int:roster_id>/', views.view_roster, name='view roster'),
     # path('roster/mine/', views.my_roster, name='my roster'),
 ]
